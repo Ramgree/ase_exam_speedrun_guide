@@ -1,5 +1,5 @@
 defmodule WhiteBreadConfig do
-  use WhiteBreadConfig.SuiteConfiguration
+  use WhiteBread.SuiteConfiguration
 
   suite name: "All",
     context: WhiteBreadContext,
