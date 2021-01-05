@@ -17,6 +17,13 @@ In order to run any of these projects you have to do the following, in ubuntu, I
 
 ### Quick recap of setting up a phoenix project
 
+#### How to quickly get started?
+
+1. Copy base project
+2. Search for all base_project occurences and swap them out with your desired project name
+3. Search for all BaseProject occurences and swap them out with your DesiredProject name
+4. Search for all BaseProjectWeb occurences and swap them out with your DesiredProjectWeb name
+
 **Try not to run the commands with sudo, if possible.**
 
 #### How to create a phoenix project?(if you need it)
@@ -52,10 +59,46 @@ MIX_ENV=test mix ecto.reset
 
 #### What to do if you wanna add something to mix.exs?
 
+``` sh
+mix deps.get
+```
+
 #### white_bread
 
 * Remember to have chromedriver on.
 * **do not start chromedriver with sudo**
 * Do everything in one file
+
+### First Practice
+
+The first practice is not very complicated.
+
+In short, I came with the following plan for the db tables:
+
+1. Product (name and quantity)
+2. Rating (email and rating)
+
+Number of votes and average rate will be calculated.
+
+We can make the first two migrations as follows:
+
+``` sh
+mix phx.gen.schema Product products name:string quantity:integer;
+mix phx.gen.schema Rating ratings email:string rating:float
+
+```
+
+Now, we have to add `belongs_to(product)` on migrations.
+
+and run
+
+``` sh
+mix ecto.reset;
+MIX_ENV=test mix ecto.reset
+```
+
+in order to have our db fresh.
+
+Now we can proceed to filling the db with some products.
 
 ## Theory
