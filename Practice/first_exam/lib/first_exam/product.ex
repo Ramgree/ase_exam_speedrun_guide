@@ -5,6 +5,8 @@ defmodule FirstExam.Product do
   schema "products" do
     field :name, :string
     field :quantity, :integer
+    has_many :ratings, FirstExam.Rating
+
     timestamps()
   end
 

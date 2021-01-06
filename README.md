@@ -11,7 +11,7 @@ All of them contain white_bread and the most important libraries we've used.
 3. solution to the first practical exam
 4. solution to the second practical exam
 
-In order to run any of these projects you have to do the following, in ubuntu, I have no idea how to go about it in windows ~~neither do I want to know how :D~~
+In order to run any of these projects you have to do the following, in **GNU+Linux**.
 
 * Make sure that you have psql set up. you don't wanna waste any time troubleshooting postgres, believe me, you really don't.
 
@@ -23,6 +23,7 @@ In order to run any of these projects you have to do the following, in ubuntu, I
 2. Search for all base_project occurences and swap them out with your desired project name
 3. Search for all BaseProject occurences and swap them out with your DesiredProject name
 4. Search for all BaseProjectWeb occurences and swap them out with your DesiredProjectWeb name
+5. **Don't forget to also change the name of the lowercase folders! i.e if you copy base_project then change it from base_project to <new_name> and base_project_web to <new_name_web>**
 
 **Try not to run the commands with sudo, if possible.**
 
@@ -71,9 +72,9 @@ mix deps.get
 
 ### First Practice
 
-The first practice is not very complicated.
+#### Ecto stuff:
 
-In short, I came with the following plan for the db tables:
+Schemas:
 
 1. Product (name and quantity)
 2. Rating (email and rating)
@@ -88,9 +89,16 @@ mix phx.gen.schema Rating ratings email:string rating:float
 
 ```
 
-Now, we have to add `belongs_to(product)` on migrations.
+Now we have to add `belongs_to(product)` to the `ratings` schema, add `has_many(ratings)` to `products` and `:product_id, references(:products)` alongside `create unique_index(:ratings, [:email, :product_id], name: :email_product_id)
+` to the CreateRatings migration file.
 
-and run
+The ecto part is the **trickiest** of them all, make sure that you have all validations correctly set there, on the changeset as well.
+
+**Make sure to add product_id to the cast function in the rating changeset, and make it required as well**
+
+The last step is to add the dummy seeds.
+
+So all we have to do now is:
 
 ``` sh
 mix ecto.reset;
@@ -99,6 +107,15 @@ MIX_ENV=test mix ecto.reset
 
 in order to have our db fresh.
 
-Now we can proceed to filling the db with some products.
+#### What's left to do:
+
+1. Make a `RatingController`
+2. Add the index action **Make sure to understand Ecto.Query**
+3. Add a `RatingController` resource to the router
+4. Make a folder `rating` on templates
+5. Add rating_view under the View folder and fill it
+6. Add index.html.eex
+7. Add new.html.eex
+8. Add the `new` and `create` actions to the `RatingController`
 
 ## Theory

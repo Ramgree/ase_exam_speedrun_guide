@@ -8,6 +8,6 @@ defmodule FirstExam.Repo.Migrations.CreateRatings do
       add :product_id, references(:products)
       timestamps()
     end
-    create unique_index(:ratings, :email)
+    create unique_index(:ratings, [:email, :product_id], name: :ratings_email_product_id_index)
   end
 end
