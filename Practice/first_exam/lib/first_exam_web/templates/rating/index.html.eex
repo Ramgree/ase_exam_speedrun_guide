@@ -1,0 +1,26 @@
+<h2>List of Products</h2>
+
+<table class ="table">
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th># of Votes</th>
+      <th>Average Rate</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for rating <- @ratings do %>
+    <tr>
+      <td><%= rating.name %></td>
+      <td><%= rating.quantity %></td>
+      <td><%= rating.votes %></td>
+      <td><%= rating.rate %></td>
+      <td>
+        <%= link "rate #{rating.name}", id: "rate #{rating.name}", to: Routes.rating_path(@conn, :new, product: %{id: rating.id, name: rating.name}) %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

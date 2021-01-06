@@ -1,0 +1,25 @@
+<h2>Rate Product</h2>
+
+<h3>Product name: <%= @data.product.name %> </h3>
+
+<%= form_for @data.changeset, Routes.rating_path(@conn, :create), fn rating -> %>
+
+<div class="form-group">
+  <%= label rating, :email, class: "control-label" %>
+  <%= text_input rating, :email, id: "email", class: "form-control" %>
+  <%= error_tag rating, :email %>
+</div>
+
+<div class="form-group">
+  <%= label rating, :rating, class: "control-label" %>
+  <%= text_input rating, :rating, id: "rating", class: "form-control" %>
+  <%= error_tag rating, :rating %>
+</div>
+
+<%= hidden_input rating, :product_id, value: @data.product.id %>
+
+<div class="form-group">
+  <%= submit "Submit", id: "Submit", class: "btn btn-primary" %>
+</div>
+
+<% end %>
