@@ -107,7 +107,13 @@ MIX_ENV=test mix ecto.reset
 
 in order to have our db fresh.
 
-#### What's left to do:
+#### Next steps:
+
+I think it's better to try to implement everything as fast as possible, and then worry about tests and else.
+
+However, this might not be the best option, since it seems that TDD and BDD combined yield half of the grade, and take much less time than the whole implementation.
+
+##### Implementation
 
 1. Make a `RatingController`
 2. Add the index action **Make sure to understand Ecto.Query**
@@ -117,5 +123,27 @@ in order to have our db fresh.
 6. Add index.html.eex
 7. Add new.html.eex
 8. Add the `new` and `create` actions to the `RatingController`
+9. Add **all** the validation to the changeset. everything should, supposedly, be handled automatically.
+
+##### TDD
+
+TDD is quite straightforward, as pretty much all tests have very minor differences.
+
+Make sure to do all validation on the changeset, otherwise it'll become a huge mess with insane nested `case`s.
+
+##### BDD
+
+I'd recommend writing the Gherkin story right after setting everything up. Free 4 points I guess.
+
+It might sound stupid, but it seems that we will have two stories that do almost nothing.
+
+1. I want to check ratings
+2. I want to rate something
+
+#### Summary
+
+Implementation should take you 75% of the time, TDD 10% and then BDD 15%.
+
+Watch out to not get caught up on implementation too much.
 
 ## Theory

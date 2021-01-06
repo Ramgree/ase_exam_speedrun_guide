@@ -18,7 +18,9 @@
       <td><%= rating.votes %></td>
       <td><%= rating.rate %></td>
       <td>
-        <%= link "rate #{rating.name}", id: "rate #{rating.name}", to: Routes.rating_path(@conn, :new, product: %{id: rating.id, name: rating.name}) %>
+        <%= link "rate #{rating.name}",
+            id: "rate #{rating.name}",
+            to: Routes.rating_path(@conn, :new, product: %{id: rating.id, name: rating.name}) %>
       </td>
     </tr>
     <% end %>

@@ -3,6 +3,7 @@ defmodule FirstExamWeb.Rating.RatingControllerTest do
 
   alias FirstExam.{Repo, Product, Rating}
   alias Ecto.Changeset
+  import Ecto.Query, only: [from: 2]
 
   test "number range", %{conn: conn} do
     conn = post conn, "/ratings", %{rating: [product_id: 1, email: "rucy@ut.ee", rating: 5.1]}
@@ -25,12 +26,20 @@ defmodule FirstExamWeb.Rating.RatingControllerTest do
   test "average rating with 0", %{conn: conn} do
     conn = get(conn, "/ratings")
 
-    assert Repo.get
+    query = Repo.one!(from p in Product, where: p.name == "haskell", preload: :ratings)
 
-    assert html_response(conn, 200) =~
+    assert Enum.empty?(query.ratings)
+
+    assert html_response(conn, 200) =~ ~r/haskell/
+
+    assert html_response(conn, 200) =~ ~r/0.0/
 
   end
 
-  test "sorted ratings"
+  test "sorted ratings", %{conn: conn} do
+
+    assert true
+
+  end
 
 end

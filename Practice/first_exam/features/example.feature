@@ -1,10 +1,17 @@
-Feature: Dummy
-  As a dummy
-  I want to test my phoenix app
-  So I go to the App
-  to test it
+Feature: Rating
+  As a customer
+  I want to rate a product that I bought
+  So I go to the ratings app
+  To rate it
 
-  Scenario: Testing if white_bread works
-    Given that I want to go to the app
-    And I am on the App
-    Then I confirm that white bread works
+  Scenario: Rating list
+    Given that I love "haskell"
+    And I go to the ratings list
+    Then I can see what other people rated it
+
+  Scenario: Rating a product
+    Given that I love "haskell"
+    And I go to the ratings list
+    Then I click "rate haskell"
+    And I write my email "bruno98@ut.ee" and rating "5"
+    Then I should get a confirmation message
