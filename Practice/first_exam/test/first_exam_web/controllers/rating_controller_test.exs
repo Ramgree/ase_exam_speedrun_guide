@@ -26,19 +26,25 @@ defmodule FirstExamWeb.Rating.RatingControllerTest do
   test "average rating with 0", %{conn: conn} do
     conn = get(conn, "/ratings")
 
-    query = Repo.one!(from p in Product, where: p.name == "haskell", preload: :ratings)
+    assigns = conn.assigns.ratings
 
-    assert Enum.empty?(query.ratings)
+    haskell_zero_ratings = assigns |> Enum.filter(fn map -> map.name == "haskell" end)
 
-    assert html_response(conn, 200) =~ ~r/haskell/
+    [ haskell_struct ] = haskell_zero_ratings
 
-    assert html_response(conn, 200) =~ ~r/0.0/
+    assert haskell_struct.votes == 0
+
+    assert haskell_struct.rate == 0.0
 
   end
 
   test "sorted ratings", %{conn: conn} do
 
-    assert true
+    conn = get(conn, "/ratings")
+
+    assigns = conn.assigns.ratings
+
+    assert assigns == assigns |> Enum.sort_by(&{&1.rate, &1.name},:desc)
 
   end
 
