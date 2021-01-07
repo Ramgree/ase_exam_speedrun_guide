@@ -1,0 +1,31 @@
+<%= form_for @changeset, Routes.game_path(@conn, :play), fn frame -> %>
+
+<h2> Current Frame: <%= @changeset.changes.current %></h2>
+
+<div class="form-group">
+  <%= label frame, :roll_one, class: "control-label" %>
+  <%= number_input frame, :roll_one, id: "roll_one", class: "form-control" %>
+  <%= error_tag frame, :roll_one %>
+</div>
+
+<div class="form-group">
+  <%= label frame, :roll_two, class: "control-label" %>
+  <%= number_input frame, :roll_two, id: "roll_two", class: "form-control" %>
+  <%= error_tag frame, :roll_two %>
+</div>
+
+<div class="form-group">
+  <%= label frame, :roll_three, class: "control-label" %>
+  <%= number_input frame, :roll_three, id: "roll_three", class: "form-control" %>
+  <%= error_tag frame, :roll_three %>
+</div>
+
+<%= hidden_input frame, :game_id, value: @changeset.changes.game_id %>
+<%= hidden_input frame, :current, value: @changeset.changes.current  %>
+
+<div class="form-group">
+  <%= submit "Submit", id: "Submit", class: "btn btn-primary" %>
+</div>
+
+
+<% end %>

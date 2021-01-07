@@ -17,6 +17,9 @@ defmodule SecondExamWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/games/start", GameController, :start
+    post "/games/play", GameController, :play
+    resources "/games", GameController
   end
 
   # Other scopes may use custom stacks.

@@ -11,10 +11,6 @@ All of them contain white_bread and the most important libraries we've used.
 3. solution to the first practical exam
 4. solution to the second practical exam
 
-In order to run any of these projects you have to do the following, in **GNU+Linux**.
-
-* Make sure that you have psql set up. you don't wanna waste any time troubleshooting postgres, believe me, you really don't.
-
 ### Quick recap of setting up a phoenix project
 
 #### How to quickly get started?
@@ -145,5 +141,63 @@ It might sound stupid, but it seems that we will have two stories that do almost
 Implementation should take you 75% of the time, TDD 10% and then BDD 15%.
 
 Watch out to not get caught up on implementation too much.
+
+
+### Second Practice
+
+#### Ecto stuff
+
+Schemas:
+
+1. Frame (roll_one, roll_two, roll_three, score, current, game_id)
+2. Game (username)
+
+Number of votes and average rate will be calculated.
+
+We can make the first two migrations as follows:
+
+``` sh
+mix phx.gen.schema Game games username:string;
+mix phx.gen.schema Frame frames roll_one:integer roll_two:integer roll_three:integer score:integer current:integer
+
+```
+
+**remember that you should put dependent migrations in a logical order**
+
+**I.E Frames depends on Games, hence generate the Games migration before Frame's**
+
+Now we have to add `belongs_to :game, SecondExam.Game` to the `frames` schema, add `has_many :frames, SecondExam.Frame` to `games`, `:game_id, references(:games)` to `frames`, with `create unique_index(:games, [:username], name: :games_username_index)` in the CreateGames migration file.
+
+Also add **game_id** to the cast function in the frames schema.
+
+#### Implementation
+
+1. Make a `GameController`
+2. Add the start, create and play actions with dummy `render conn, <action>.html`
+3. Add a `GameController` resource to the router
+4. Make a folder `game` on templates
+5. Add game_view under the View folder and fill it
+6. Add start.html.eex
+7. Add play.html.eex
+9. Add **all** the validation to the changeset. 
+
+### Best path for the most points
+
+Aim to get the following done in around **50 minutes**
+
+**Do not start by going straight for the controller logic**
+
+1. Gherkin - 4 free points // 5 minutes
+2. Routes - 2 free points // 2 minutes
+3. Models & Seeds - 5 not-so-free points (just the schema + migrations + random data) // 20 minutes
+4. Controller Logic I + Views & Templates - 3 hard points (add "dummy" controllers that only render `route.html`)  // 20 minutes
+
+For the following part:
+
+5. TDD - 8 points // 30 minutes, aim to do MODEL tests. These are far easier to do; just make a changeset and confirm the error.
+6. Controller Logic II - 10 points // 70 minutes+
+7. white bread steps - 3 points // impossible to do this without the controller logic being 100% done, but quite easy nevertheless. should not take longer than 10 minutes.
+
+
 
 ## Theory
