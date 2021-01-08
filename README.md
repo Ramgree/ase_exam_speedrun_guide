@@ -198,6 +198,4 @@ For the following part:
 6. Controller Logic II - 10 points // 70 minutes+
 7. white bread steps - 3 points // impossible to do this without the controller logic being 100% done, but quite easy nevertheless. should not take longer than 10 minutes.
 
-
-
 ## Theory
