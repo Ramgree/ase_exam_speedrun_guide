@@ -1,0 +1,27 @@
+<h2>Buy!</h2>
+
+<%= form_for @data.changeset, Routes.purchase_path(@conn, :buy), fn purchase -> %>
+
+<h2><%= @data.product_name %></h2>
+
+<div class="form-group">
+    <%= label purchase, :email, class: "control-label" %>
+    <%= text_input purchase, :email, id: "email", class: "form-control" %>
+    <%= error_tag purchase, :email %>
+</div>
+
+<div class="form-group">
+    <%= label purchase, :pin, class: "control-label" %>
+    <%= text_input purchase, :pin, id: "pin", class: "form-control" %>
+    <%= error_tag purchase, :pin %>
+</div>
+
+<%= hidden_input purchase, :product_id, value: @data.product_id %>
+
+<%= hidden_input purchase, :bid, value: @data.changeset.changes.bid %>
+
+<div class="form-group">
+    <%= submit "Submit", id: "Submit", class: "btn btn-primary" %>
+</div>
+
+<% end %>

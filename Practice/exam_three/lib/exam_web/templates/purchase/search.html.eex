@@ -1,0 +1,21 @@
+<h2>Search!</h2>
+
+<%= form_for @changeset, Routes.purchase_path(@conn, :search), fn query -> %>
+
+<div class="form-group">
+    <%= label query, :query, class: "control-label" %>
+    <%= text_input query, :query, id: "email", class: "form-control" %>
+    <%= error_tag query, :query %>
+</div>
+
+<div class="form-group">
+    <%= label query, :bid, class: "control-label" %>
+    <%= text_input query, :bid, id: "product_name", class: "form-control" %>
+    <%= error_tag query, :bid %>
+</div>
+
+<div class="form-group">
+    <%= submit "Submit", id: "Submit", class: "btn btn-primary" %>
+</div>
+
+<% end %>

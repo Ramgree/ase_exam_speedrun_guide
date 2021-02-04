@@ -1,4 +1,8 @@
-# Rucy & Arara's :parrot: ASE exam guide
+# ASE exam guide
+
+Heh, wanna pass the ASE exam? This will help you.
+
+I wrote this while preparing for the exam, which I scored an A.
 
 ## Practice
 
@@ -10,13 +14,14 @@ All of them contain white_bread and the most important libraries we've used.
 2. base phoenix project with user authentication
 3. solution to the first practical exam
 4. solution to the second practical exam
+5. solution to the third practical exam
 
 ### Quick recap of setting up a phoenix project
 
 #### How to quickly get started?
 
 1. Copy base project
-2. Search for all base_project occurences and swap them out with your desired project name
+2. Search for all base_project occurences and swap them out with your desired_project name
 3. Search for all BaseProject occurences and swap them out with your DesiredProject name
 4. Search for all BaseProjectWeb occurences and swap them out with your DesiredProjectWeb name
 5. **Don't forget to also change the name of the lowercase folders! i.e if you copy base_project then change it from base_project to <new_name> and base_project_web to <new_name_web>**
@@ -197,5 +202,3 @@ For the following part:
 5. TDD - 8 points // 30 minutes, aim to do MODEL tests. These are far easier to do; just make a changeset and confirm the error.
 6. Controller Logic II - 10 points // 70 minutes+
 7. white bread steps - 3 points // impossible to do this without the controller logic being 100% done, but quite easy nevertheless. should not take longer than 10 minutes.
-
-## Theory
